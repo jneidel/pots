@@ -1,0 +1,96 @@
+{
+  "name": "pots",
+  "repository": "jneidel/pots",
+  "version": "0.0.0",
+  "description": "Budgeting across multiple pots.",
+  "author": {
+    "name": "Jonathan Neidel",
+    "email": "git@jneidel.com",
+    "url": "https://jneidel.com"
+  },
+  "bin": {
+    "oraclett": "./bin/run"
+  },
+  "scripts": {
+    "start": "npm run build",
+    "test": "jest --coverage",
+    "build": "tsc",
+    "watch": "concurrently -k -n \"🔨,🚀\" \"npm run watch-build\" \"npm run watch-test\" --prefix name",
+    "watch-build": "tsc -w",
+    "watch-test": "jest --watch",
+    "lint": "eslint --fix --ext .ts --parser-options \"{ 'ecmaVersion': 10, 'ecmaFeatures': { 'impliedStrict': true }, project: ./tsconfig.json }\" src"
+  },
+  "files": [
+    "/bin",
+    "/dist",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json",
+    "/LICENCE"
+  ],
+  "license": "GPLv3",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@oclif/core": "^1.22.0",
+    "@oclif/plugin-help": "^5",
+    "@oclif/plugin-not-found": "^2.3.15",
+    "@oclif/plugin-plugins": "^2.2.2",
+    "@oclif/plugin-warn-if-update-available": "^2.0.19",
+    "chalk": "^4.1.2",
+    "inquirer": "^8.2.5",
+    "sugar": "^2.0.6"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^8.2.5",
+    "@types/jest": "^27.0.3",
+    "@types/node": "^16.11.9",
+    "@typescript-eslint/eslint-plugin": "^5.47.1",
+    "eslint": "^8.30.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-unicorn": "^45.0.2",
+    "jest": "^27.3.1",
+    "ts-jest": "^27.0.7",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.2"
+  },
+  "oclif": {
+    "bin": "pots",
+    "dirname": "pots",
+    "commands": "./dist/commands",
+    "plugins": [
+      "@oclif/plugin-help",
+      "@oclif/plugin-warn-if-update-available",
+      "@oclif/plugin-not-found"
+    ],
+    "warn-if-update-available": {
+      "timeoutInDays": 7,
+      "message": "An update for <%= config.name %> is available (<%= chalk.yellow(config.version) %> => <%= chalk.greenBright(latest) %>).\nInstall with: sudo npm install -g <%= config.name %>"
+    },
+    "topics": {
+      "plugins": {
+        "hidden": true
+      }
+    },
+    "topicSeparator": " ",
+    "additionalHelpFlags": [
+      "-h",
+      "help"
+    ],
+    "additionalVersionFlags": [
+      "-v",
+      "-V",
+      "version",
+      "-version"
+    ]
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/**/*.test.ts"
+    ],
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    }
+  }
+}
