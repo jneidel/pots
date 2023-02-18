@@ -70,6 +70,9 @@
     "topics": {
       "plugins": {
         "hidden": true
+      },
+      "trans": {
+        "description": "Manage transactions."
       }
     },
     "topicSeparator": " ",
