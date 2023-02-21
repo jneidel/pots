@@ -5,17 +5,18 @@ import { createDataDir } from "../fs";
 
 let sequelize: Sequelize;
 
-export async function setupDatabase() {
+export async function setupDatabase( options ) {
   await createDataDir();
 
-  openDatabaseConnection();
-  await sequelize.sync();
+  openDatabaseConnection( options );
+  await sequelize.sync( { alter: true } ); // TODO: not for production
 }
 
-async function openDatabaseConnection() {
+async function openDatabaseConnection( options: { logging?: boolean } = {} ) {
   sequelize = new Sequelize( {
     dialect: "sqlite",
     storage: SQLITE_DB,
+    logging: options.logging || false,
   } );
   const Pot = definePot( sequelize );
   const Tag = defineTag( sequelize );
@@ -28,3 +29,5 @@ export function getDatabase() {
 
   return sequelize;
 }
+
+export * from "./models";

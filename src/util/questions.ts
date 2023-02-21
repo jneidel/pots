@@ -1,14 +1,19 @@
 import inquirer from "inquirer";
-import { getReadableChoices } from "./utils";
-import { validateDateString } from "./validation";
+import { validateDateString } from "./date";
 
 type InquirerChoice = {
   name: string;
-  value: string;
+  value: any;
 }
-function handleZeroOrOneChoices( choices: InquirerChoice[]|string[] ) {
+type Choices = InquirerChoice[]|string[];
+
+function handleOneOrZeroChoices( data: { choices: Choices; noun?: string } ) {
+  const { choices, noun } = data;
+
   if ( choices.length === 0 ) {
-    throw new Error( "Nothing to choose from." );
+    const genericErrorMessage = "None to choose from. To create some use: NOUN add";
+    const specificErrorMessage = `No ${noun}s found. To create some use: ${noun} add`;
+    throw new Error( noun ? specificErrorMessage : genericErrorMessage );
   } else if ( choices.length === 1 ) {
     const choice = choices[0];
 
@@ -24,39 +29,8 @@ function handleZeroOrOneChoices( choices: InquirerChoice[]|string[] ) {
   }
 }
 
-export async function project( selection?: string[] ): Promise<string> {
-  const choices = selection ? await getReadableChoices.project( selection ) : await getReadableChoices.project();
-  const choice: string|null = handleZeroOrOneChoices( choices );
-
-  if ( choice !== null )
-    return new Promise( ( resolve ) => resolve( choice ) );
-  else
-    return inquirer.prompt( [
-      {
-        type   : "list",
-        name   : "project",
-        message: "What project?",
-        choices,
-      },
-    ] ).then( ans => ans.project );
-}
-
-export async function taskDetail( projectKey: string, selection?: string[] ): Promise<string> {
-  const choices = selection ? await getReadableChoices.taskDetails( projectKey, selection ) : await getReadableChoices.taskDetails( projectKey );
-  const choice: string|null = handleZeroOrOneChoices( choices );
-
-  if ( choice !== null ) return new Promise( ( resolve ) => resolve( choice ) ); else
-    return inquirer.prompt( [ {
-      type   : "list",
-      name   : "taskDetail",
-      message: "What task detail?",
-      choices,
-    } ] ).then( ans => ans.taskDetail );
-
-}
-
-export async function dayOfTheWeek( choices: string[] ): Promise<string> {
-  const choice: string|null = handleZeroOrOneChoices( choices );
+export async function dayOfTheWeek( choices: Choices ): Promise<string> {
+  const choice: string|null = handleOneOrZeroChoices( { choices } );
 
   if ( choice !== null ) return new Promise( ( resolve ) => resolve( choice ) ); else
     return inquirer.prompt( [ {
@@ -74,9 +48,9 @@ export async function number( message: string, defaultVal?: number ): Promise<nu
     name   : "n",
     message,
     default: defaultVal,
-    validate(input) {
+    validate( input ) {
       const valid = !isNaN( parseFloat( input ) );
-      return valid || "Please enter a number"
+      return valid || "Please enter a number";
     },
   } ] ).then( ans => parseFloat( ans.n ) );
 }
@@ -90,28 +64,26 @@ export async function renaming( defaultVal: string,  message = "Please open your
   } ] ).then( ans => ans.updated.trim() );
 }
 
-export async function projectOrTaskDetail( message: string ): Promise<"project"|"taskDetail"> {
+export async function selectFromList( data: { message: string; choices: Choices; noun?: string } ): Promise<string> {
+  const { message, choices, noun } = data;
+
+  const choice = handleOneOrZeroChoices( { choices, noun } );
+  if ( choice !== null )
+    return choice;
+
   return inquirer.prompt( [ {
-    type   : "list",
-    name   : "what",
+    type: "list",
+    name: "select",
     message,
-    choices: [
-      {
-        name : "Project Name",
-        value: "project",
-      },
-      {
-        name : "Task Details (of a project)",
-        value: "taskDetail",
-      },
-    ],
-  } ] ).then( ans => ans.what );
+    choices,
+  } ] ).then( ans => ans.select );
 }
 
 export async function text( message: string ): Promise<string> {
   return inquirer.prompt( [ {
-    type: "input",
-    name: "text",
+    type    : "input",
+    name    : "text",
+    validate: input => !!input || "Can't be empty",
     message,
   } ] ).then( ans => ans.text.trim() );
 }

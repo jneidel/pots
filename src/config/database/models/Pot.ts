@@ -5,11 +5,12 @@ export function definePot( sequelize: Sequelize ) {
     name: {
       type     : DataTypes.STRING,
       allowNull: false,
+      unique   : true,
     },
     color: {
       type: DataTypes.STRING,
     },
-    bgColor: {
+    colorBg: {
       type: DataTypes.STRING,
     },
   }, {} );

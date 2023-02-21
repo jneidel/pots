@@ -17,13 +17,13 @@ export function defineTransaction( sequelize: Sequelize, Pot, Tag ) {
     color: {
       type: DataTypes.STRING,
     },
-    bgColor: {
+    colorBg: {
       type: DataTypes.STRING,
     },
   }, {} );
 
-  Transaction.hasOne( Pot );
-  Transaction.hasOne( Tag );
+  Transaction.hasOne( Pot, { onDelete: "CASCADE" } );
+  Transaction.hasOne( Tag, { onDelete: "SET NULL" } );
 
   return Transaction;
 }

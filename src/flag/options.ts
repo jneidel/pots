@@ -3,19 +3,19 @@ export type ValueOnly = {
 }
 
 export type PromptOptions = {
-  value: any|undefined,
-  prompt: string,
+  value: any|undefined;
+  prompt: string;
 }
 
 export type InteractiveDefaultOptions = {
-  value: any|undefined,
-  isInteractive: boolean,
-  default: any,
-  prompt?: string,
+  value: any|undefined;
+  isInteractive: boolean;
+  default: any;
+  prompt?: string;
 }
 
 export type InteractiveOptions = {
-  value: any|undefined,
-  isInteractive: boolean,
-  prompt?: string,
+  value: any|undefined;
+  isInteractive: boolean;
+  prompt?: string;
 }

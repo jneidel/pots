@@ -3,5 +3,5 @@
 import { setupDatabase } from "./config/database";
 
 ( async () => {
-  await setupDatabase();
+  await setupDatabase( { logging: true } );
 } )();
