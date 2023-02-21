@@ -32,19 +32,22 @@
     "node": ">=18"
   },
   "dependencies": {
-    "@oclif/core": "^1.22.0",
+    "@oclif/core": "^2.1.7",
     "@oclif/plugin-help": "^5",
     "@oclif/plugin-not-found": "^2.3.15",
     "@oclif/plugin-plugins": "^2.2.2",
     "@oclif/plugin-warn-if-update-available": "^2.0.19",
     "chalk": "^4.1.2",
     "inquirer": "^8.2.5",
+    "sequelize": "^6.28.0",
+    "sqlite3": "^5.1.4",
     "sugar": "^2.0.6"
   },
   "devDependencies": {
     "@types/inquirer": "^8.2.5",
     "@types/jest": "^27.0.3",
     "@types/node": "^16.11.9",
+    "@types/sequelize": "^4.28.14",
     "@typescript-eslint/eslint-plugin": "^5.47.1",
     "eslint": "^8.30.0",
     "eslint-plugin-node": "^11.1.0",
