@@ -1,9 +1,8 @@
 import { Command, Flags } from "@oclif/core";
 import { add } from "../../controller/tag";
-import { getDatabase } from "../../config/database";
 
 export default class Add extends Command {
-  static summary = "Add a pot.";
+  static summary = "Add a tag.";
 
   static examples = [ `$ <%= config.bin %> <%= command.id %>
   $ <%= config.bin %> <%= command.id %> -n groceries
