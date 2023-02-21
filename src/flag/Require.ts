@@ -1,6 +1,7 @@
 import * as askFor from "../util/questions";
 import { ValueOnly, PromptOptions, InteractiveDefaultOptions } from "./options";
 import { getDatabase } from "../config/database";
+import { DateString } from "../util/date";
 
 export default class Require {
   static async text( options: PromptOptions ) {
@@ -21,15 +22,15 @@ export default class Require {
       return askFor.number( prompt );
   }
 
-  static async date( options: InteractiveDefaultOptions ) {
+  static async date( options: InteractiveDefaultOptions ): Promise<DateString> {
     const { value, isInteractive, default: defaultVal } = options;
 
     if ( value )
-      return value;
+      return new DateString( value );
     else if ( !isInteractive )
-      return defaultVal;
+      return new DateString( "today" );
     else
-      return askFor.date();
+      return askFor.date().then( ans => new DateString( ans ) );
   }
 
   static async pot( options: ValueOnly ) {

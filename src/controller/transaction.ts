@@ -22,12 +22,11 @@ export async function add( flags ) {
     value  : flags.date,
     isInteractive,
     default: "today",
-  } );
-
+  } ).then( dateString => dateString.date );
   const color = Validate.hex( { value: flags.color } );
   const colorBg = Validate.hex( { value: flags["color-bg"] } );
   const { dryrun } = flags;
 
   const { Transaction } = getDatabase().models;
-  return Transaction.create( { name, amount, pot, tag, color, colorBg } );
+  await Transaction.create( { name, amount, pot, tag, date, color, colorBg } );
 }

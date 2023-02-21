@@ -21,8 +21,18 @@ You can play around with what works here: https://sugarjs.com/dates/#/Parsing`;
   }
 }
 
-export function parseDateStringForValues( dateString: string, formatString: string ): string[] {
-  validateDateString( dateString );
-  const date = Date.create( dateString );
-  return Date.format( date, formatString ).split( " " );
+export class DateString {
+  string: string;
+  date: Date;
+
+  constructor( string: string ) {
+    validateDateString( string );
+
+    this.string = string;
+    this.date = Date.create( string );
+  }
+
+  format( formatString: string ): string[] {
+    return Date.format( this.date, formatString ).split( " " );
+  }
 }
