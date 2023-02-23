@@ -9,7 +9,7 @@
     "url": "https://jneidel.com"
   },
   "bin": {
-    "oraclett": "./bin/run"
+    "pots": "./bin/run"
   },
   "scripts": {
     "start": "npm run build",
