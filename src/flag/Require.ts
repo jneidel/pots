@@ -1,10 +1,11 @@
 import * as askFor from "../util/questions";
 import { ValueOnly, PromptOptions, InteractiveDefaultOptions } from "./options";
-import { getDatabase } from "../config/database";
 import { DateString } from "../util/date";
+import database from "../config/database";
+import { Pot } from "../config/models/types";
 
 export default class Require {
-  static async text( options: PromptOptions ) {
+  static async text( options: PromptOptions ): Promise<string> {
     const { value, prompt } = options;
 
     if ( value )
@@ -13,7 +14,7 @@ export default class Require {
       return askFor.text( prompt );
   }
 
-  static async number( options: PromptOptions ) {
+  static async number( options: PromptOptions ): Promise<Number> {
     const { value, prompt } = options;
 
     if ( value )
@@ -33,27 +34,23 @@ export default class Require {
       return askFor.date().then( ans => new DateString( ans ) );
   }
 
-  static async pot( options: ValueOnly ) {
+  static async pot( options: ValueOnly ): Promise<Pot> {
     const { value } = options;
-    const { Pot } = getDatabase().models;
 
     if ( value ) {
-      return Pot.findOne( {
-        where: {
-          name: value,
-        },
-      } ).then( res => {
-        if ( res === null )
-          throw new Error( `Pot named '${value}' does not exist.` );
-        else
-          return res;
-      } );
+      try {
+        return database.Pot.findById( value, { keepOpen: true } );
+      } catch ( err ) {
+        console.log( "404:", err );
+        throw new Error( `Pot named '${value}' does not exist.` );
+      }
     } else {
-      const pots: any = await Pot.findAll();
+      const pots = database.Pot.findAll();
 
-      const selected = await askFor.selectFromList( {
+      const selected = await askFor.selectFromList<Pot>( {
         message: "Select a pot:",
-        choices: pots.map( pot => ( { name: pot.name, value: pot } ) ),
+        choices: [ ...pots ]
+          .map( ( pot ) => ( { name: pot.name, value: pot } ) ),
       } );
 
       return selected;

@@ -18,3 +18,9 @@ sudo npm install -g pots
 ## Usage
 
 <!-- TODO: copy over screenshots and describe commands -->
+
+## Development
+
+### Documentation
+
+- [realm docs](https://www.mongodb.com/docs/realm/sdk/node/)

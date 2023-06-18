@@ -1,5 +1,5 @@
-import { Require, Optional, Validate } from "../flag";
-import { getDatabase } from "../config/database";
+import { Require, Validate } from "../flag";
+import database from "../config/database";
 
 export async function add( flags ) {
   const name = await Require.text( {
@@ -7,10 +7,19 @@ export async function add( flags ) {
     prompt: "Name of the pot?",
   } );
 
-  const color = Validate.hex( { value: flags.color } );
-  const colorBg = Validate.hex( { value: flags["color-bg"] } );
+  // const color = Validate.hex( { value: flags.color } );
+  // const colorBg = Validate.hex( { value: flags["color-bg"] } );
   const { dryrun } = flags;
 
-  const { Pot } = getDatabase().models;
-  return Pot.create( { name, color, colorBg } );
+  database.Pot.create( { name } );
+}
+
+export function list() {
+  const pots = database.Pot.findAll();
+
+  pots.forEach( ( pot ) => {
+    console.log( pot.name );
+  } );
+
+  database.close();
 }

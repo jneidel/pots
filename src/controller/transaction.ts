@@ -1,5 +1,5 @@
 import { Require, Optional, Validate } from "../flag";
-import { getDatabase } from "../config/database";
+import database from "../config/database";
 
 export async function add( flags ) {
   const isInteractive = !( !flags.date && flags.name && flags.pot && flags.amount );
@@ -14,19 +14,25 @@ export async function add( flags ) {
   const pot = await Require.pot( {
     value: flags.pot,
   } );
-  const tag = await Optional.tag( {
-    value: flags.tag,
-    isInteractive,
-  } );
   const date = await Require.date( {
     value  : flags.date,
     isInteractive,
     default: "today",
   } ).then( dateString => dateString.date );
-  const color = Validate.hex( { value: flags.color } );
-  const colorBg = Validate.hex( { value: flags["color-bg"] } );
+  // const color = Validate.hex( { value: flags.color } );
+  // const colorBg = Validate.hex( { value: flags["color-bg"] } );
   const { dryrun } = flags;
 
-  const { Transaction } = getDatabase().models;
-  await Transaction.create( { name, amount, pot, tag, date, color, colorBg } );
+  database.Transaction.create( { name, amount, pot, date } );
+}
+
+
+export function list() {
+  const transactions = database.Transaction.findAll();
+
+  transactions.forEach( ( t ) => {
+    console.log( t.name );
+  } );
+
+  database.close();
 }

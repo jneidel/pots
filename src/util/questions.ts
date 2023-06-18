@@ -1,13 +1,12 @@
 import inquirer from "inquirer";
 import { validateDateString } from "./date";
 
-type InquirerChoice = {
+type Choices<T> = Array<{
   name: string;
-  value: any;
-}
-type Choices = InquirerChoice[]|string[];
+  value: T;
+}>;
 
-function handleOneOrZeroChoices( data: { choices: Choices; noun?: string } ) {
+function handleOneOrZeroChoices<T>( data: { choices: Choices<T>; noun?: string } ): T|null {
   const { choices, noun } = data;
 
   if ( choices.length === 0 ) {
@@ -15,7 +14,7 @@ function handleOneOrZeroChoices( data: { choices: Choices; noun?: string } ) {
     const specificErrorMessage = `No ${noun}s found. To create some use: ${noun} add`;
     throw new Error( noun ? specificErrorMessage : genericErrorMessage );
   } else if ( choices.length === 1 ) {
-    const choice = choices[0];
+    const [ choice ] = choices;
 
     if ( typeof choice === "string" ) {
       console.log( `Using ${choice}` );
@@ -29,7 +28,7 @@ function handleOneOrZeroChoices( data: { choices: Choices; noun?: string } ) {
   }
 }
 
-export async function dayOfTheWeek( choices: Choices ): Promise<string> {
+export async function dayOfTheWeek( choices: Choices<string> ): Promise<string> {
   const choice: string|null = handleOneOrZeroChoices( { choices } );
 
   if ( choice !== null ) return new Promise( ( resolve ) => resolve( choice ) ); else
@@ -64,10 +63,10 @@ export async function renaming( defaultVal: string,  message = "Please open your
   } ] ).then( ans => ans.updated.trim() );
 }
 
-export async function selectFromList( data: { message: string; choices: Choices; noun?: string } ): Promise<string> {
+export async function selectFromList<T>( data: { message: string; choices: Choices<T>; noun?: string } ): Promise<T> {
   const { message, choices, noun } = data;
 
-  const choice = handleOneOrZeroChoices( { choices, noun } );
+  const choice = handleOneOrZeroChoices<T>( { choices, noun } );
   if ( choice !== null )
     return choice;
 

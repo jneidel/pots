@@ -1,6 +1,5 @@
 import { Command, Flags } from "@oclif/core";
 import { add } from "../../controller/pot";
-import { getDatabase } from "../../config/database";
 
 export default class Add extends Command {
   static summary = "Add a pot.";
