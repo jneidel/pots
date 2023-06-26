@@ -1,7 +1,7 @@
 import { Command, Flags } from "@oclif/core";
 import { list } from "../../controller/pot";
 
-export default class Add extends Command {
+export default class List extends Command {
   static summary = "List pots.";
 
   static examples = [ `$ <%= config.bin %> <%= command.id %>
@@ -13,8 +13,10 @@ export default class Add extends Command {
   };
 
   async run(): Promise<void> {
-    // const { flags } = await this.parse( Add );
-
-    list();
+    try {
+      list().forEach( pot => this.log( pot ) );
+    } catch( err: any ) {
+      this.error( err.message );
+    }
   }
 }

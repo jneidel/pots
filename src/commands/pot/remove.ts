@@ -1,8 +1,8 @@
 import { Command, Flags } from "@oclif/core";
-import { add } from "../../controller/pot";
+import { remove } from "../../controller/pot";
 
-export default class Add extends Command {
-  static summary = "Add a pot.";
+export default class Remove extends Command {
+  static summary = "Remove a pot.";
 
   static examples = [ `$ <%= config.bin %> <%= command.id %>
   $ <%= config.bin %> <%= command.id %> -n life
@@ -34,13 +34,10 @@ export default class Add extends Command {
   };
 
   async run(): Promise<void> {
-    const { flags } = await this.parse( Add );
+    const { flags } = await this.parse( Remove );
 
-    await add( flags ).catch( err => {
-      if ( err.name === "SequelizeUniqueConstraintError" )
-        this.error( `Name already exists in the system.` );
-      else
-        this.error( `${err.name}: ${err.message}` );
-    } ).then( name => this.log( `Successfully created pot '${name}'.` ) );
+    await remove( flags ).catch( err => {
+      this.error( `${err.message}` );
+    } ).then( name => this.log( `Successfully removed pot '${name}'.` ) );
   }
 }

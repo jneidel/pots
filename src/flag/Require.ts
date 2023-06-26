@@ -51,6 +51,7 @@ export default class Require {
         message: "Select a pot:",
         choices: [ ...pots ]
           .map( ( pot ) => ( { name: pot.name, value: pot } ) ),
+        noun: "pot",
       } );
 
       return selected;

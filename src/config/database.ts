@@ -56,6 +56,15 @@ class Database {
     return objectArr;
   }
 
+  private remove( object: any, options: DbOptions ): void {
+    this.database.write( () => {
+      this.database.delete( object );
+    } );
+
+    if ( !options.keepOpen )
+      this.database.close();
+  }
+
   private generateSpecificFunctionsFor<T extends Object>( model: string ) {
     return {
       create: ( values: T, options: DbOptions = defaultDbOptions ) => {
@@ -66,6 +75,9 @@ class Database {
       },
       findAll: ( options: DbOptions = defaultFindAllOptions  ): T[] => {
         return this.findAll( model, options );
+      },
+      remove: ( object: any, options: DbOptions = defaultDbOptions ): void => {
+        return this.remove( object, options );
       },
     };
   }

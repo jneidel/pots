@@ -1,7 +1,7 @@
 import { Require, Validate } from "../flag";
 import database from "../config/database";
 
-export async function add( flags ) {
+export async function add( flags ): Promise<string> {
   const name = await Require.text( {
     value : flags.name,
     prompt: "Name of the pot?",
@@ -9,17 +9,29 @@ export async function add( flags ) {
 
   // const color = Validate.hex( { value: flags.color } );
   // const colorBg = Validate.hex( { value: flags["color-bg"] } );
-  const { dryrun } = flags;
+  // const { dryrun } = flags;
 
   database.Pot.create( { name } );
+
+  return name;
 }
 
-export function list() {
-  const pots = database.Pot.findAll();
-
-  pots.forEach( ( pot ) => {
-    console.log( pot.name );
-  } );
+export function list(): string[] {
+  const pots = database.Pot.findAll().map( pot => pot.name );
 
   database.close();
+
+  return pots;
 }
+
+export async function remove( flags ): Promise<string> {
+  const pot = await Require.pot( {
+    value: flags.name,
+  } )
+  const name = pot.name;
+
+  database.Pot.remove( pot );
+
+  return name;
+}
+

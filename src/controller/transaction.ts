@@ -21,7 +21,7 @@ export async function add( flags ) {
   } ).then( dateString => dateString.date );
   // const color = Validate.hex( { value: flags.color } );
   // const colorBg = Validate.hex( { value: flags["color-bg"] } );
-  const { dryrun } = flags;
+  // const { dryrun } = flags;
 
   database.Transaction.create( { name, amount, pot, date } );
 }
