@@ -31,7 +31,7 @@ export function list() {
   const transactions = database.Transaction.findAll();
 
   transactions.forEach( ( t ) => {
-    console.log( t.name );
+    console.log( t.name, t.pot.name, t.amount, t.date );
   } );
 
   database.close();

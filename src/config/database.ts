@@ -8,7 +8,7 @@ type DbOptions = {
 const defaultDbOptions: DbOptions = {
   keepOpen: false,
 };
-const defaultFindAllOptions: DbOptions = Object.assign( defaultDbOptions, {
+const defaultFindAllOptions: DbOptions = Object.assign( {}, defaultDbOptions, {
   keepOpen: true,
 } );
 
@@ -61,10 +61,10 @@ class Database {
       create: ( values: T, options: DbOptions = defaultDbOptions ) => {
         return this.create( model, values, options );
       },
-      findById: ( id: any, options: DbOptions = defaultFindAllOptions ): T => {
+      findById: ( id: any, options: DbOptions = defaultDbOptions ): T => {
         return this.findById( model, id, options );
       },
-      findAll: ( options: DbOptions = defaultDbOptions ): T[] => {
+      findAll: ( options: DbOptions = defaultFindAllOptions  ): T[] => {
         return this.findAll( model, options );
       },
     };
