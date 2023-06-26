@@ -69,7 +69,7 @@ class Database {
     this.database.write( () => {
       Object.keys( values ).forEach( ( property: string ) => {
         object[property] = values[property];
-      } )
+      } );
     } );
 
     if ( !options.keepOpen )

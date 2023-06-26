@@ -15,7 +15,7 @@ export default class List extends Command {
   async run(): Promise<void> {
     try {
       list().forEach( pot => this.log( pot ) );
-    } catch( err: any ) {
+    } catch ( err: any ) {
       this.error( err.message );
     }
   }

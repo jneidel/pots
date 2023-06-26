@@ -28,8 +28,8 @@ export function list(): string[] {
 export async function remove( flags ): Promise<string> {
   const pot = await Require.pot( {
     value: flags.name,
-  } )
-  const name = pot.name;
+  } );
+  const { name } = pot;
 
   database.Pot.remove( pot );
 
@@ -42,7 +42,7 @@ export async function edit( flags ): Promise<string[]> {
   } );
 
   const changedValues: Partial<Pot> = {};
-  changedValues["name"] = await Require.text( {
+  changedValues.name = await Require.text( {
     value : flags.newName,
     prompt: "New name of the pot?",
   } );

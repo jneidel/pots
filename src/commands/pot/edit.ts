@@ -43,7 +43,7 @@ export default class Edit extends Command {
     await edit( flags ).catch( err => {
       this.error( `${err.message}` );
     } ).then( properties => {
-      this.log( `Successfully updated pots properties: ${properties.map( p => `'${p}'` )}.` )
-    });
+      this.log( `Successfully updated pots properties: ${properties.map( p => `'${p}'` )}.` );
+    } );
   }
 }
