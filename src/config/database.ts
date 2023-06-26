@@ -65,6 +65,17 @@ class Database {
       this.database.close();
   }
 
+  private edit( object: any, values: any, options: DbOptions ): void {
+    this.database.write( () => {
+      Object.keys( values ).forEach( ( property: string ) => {
+        object[property] = values[property];
+      } )
+    } );
+
+    if ( !options.keepOpen )
+      this.database.close();
+  }
+
   private generateSpecificFunctionsFor<T extends Object>( model: string ) {
     return {
       create: ( values: T, options: DbOptions = defaultDbOptions ) => {
@@ -78,6 +89,9 @@ class Database {
       },
       remove: ( object: any, options: DbOptions = defaultDbOptions ): void => {
         return this.remove( object, options );
+      },
+      edit: ( object: any, values: Partial<T>, options: DbOptions = defaultDbOptions ): void => {
+        return this.edit( object, values, options );
       },
     };
   }

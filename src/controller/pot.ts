@@ -1,5 +1,6 @@
 import { Require, Validate } from "../flag";
 import database from "../config/database";
+import { Pot } from "../config/models/types";
 
 export async function add( flags ): Promise<string> {
   const name = await Require.text( {
@@ -35,3 +36,18 @@ export async function remove( flags ): Promise<string> {
   return name;
 }
 
+export async function edit( flags ): Promise<string[]> {
+  const pot = await Require.pot( {
+    value: flags.name,
+  } );
+
+  const changedValues: Partial<Pot> = {};
+  changedValues["name"] = await Require.text( {
+    value : flags.newName,
+    prompt: "New name of the pot?",
+  } );
+
+  database.Pot.edit( pot, changedValues );
+
+  return Object.keys( changedValues );
+}
