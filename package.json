@@ -39,6 +39,7 @@
     "@oclif/plugin-plugins": "^2.2.2",
     "@oclif/plugin-warn-if-update-available": "^2.0.19",
     "chalk": "^4.1.2",
+    "cli-table3": "^0.6.3",
     "inquirer": "^8.2.5",
     "realm": "^11.10.1",
     "sugar": "^2.0.6"

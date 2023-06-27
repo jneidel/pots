@@ -24,3 +24,4 @@ sudo npm install -g pots
 ### Documentation
 
 - [realm docs](https://www.mongodb.com/docs/realm/sdk/node/)
+- [cli-table3](https://github.com/cli-table/cli-table3/blob/master/basic-usage.md)
