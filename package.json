@@ -18,6 +18,7 @@
     "watch": "concurrently -k -n \"🔨,🚀\" \"npm run watch-build\" \"npm run watch-test\" --prefix name",
     "watch-build": "tsc -w",
     "watch-test": "jest --watch",
+    "watch-start": "find dist | entr -cr ./bin/run",
     "lint": "eslint --fix --ext .ts --parser-options \"{ 'ecmaVersion': 10, 'ecmaFeatures': { 'impliedStrict': true }, project: ./tsconfig.json }\" src"
   },
   "files": [
