@@ -1,8 +1,11 @@
 {
   "name": "pots",
-  "repository": "jneidel/pots",
   "version": "0.0.0",
   "description": "Budgeting across multiple pots.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jneidel/pots.git"
+  },
   "author": {
     "name": "Jonathan Neidel",
     "email": "git@jneidel.com",
@@ -26,11 +29,15 @@
     "/dist",
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json",
-    "/LICENCE"
+    "/LICENCE",
+    "/README.md"
   ],
   "license": "GPLv3",
   "engines": {
     "node": ">=18"
+  },
+  "volta": {
+    "node": "18.16.1"
   },
   "dependencies": {
     "@oclif/core": "^2.1.7",

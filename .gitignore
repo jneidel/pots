@@ -3,3 +3,5 @@ coverage
 dist
 *.sqlite
 *.realm*
+oclif.manifest.json
+package-lock.json
