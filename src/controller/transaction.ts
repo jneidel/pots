@@ -84,3 +84,12 @@ export async function edit( flags ): Promise<string[]> {
 
   return Object.keys( changedValues );
 }
+
+export async function remove(): Promise<string> {
+  const transaction = await Require.transaction( { value: undefined } );
+  const { name } = transaction;
+
+  database.Transaction.remove( transaction );
+
+  return name;
+}

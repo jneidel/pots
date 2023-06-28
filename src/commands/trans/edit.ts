@@ -2,12 +2,10 @@ import { Command, Flags } from "@oclif/core";
 import { edit } from "../../controller/transaction";
 
 export default class Edit extends Command {
-  static summary = "Add a transaction.";
-  static description = "You will be prompted";
+  static summary = "edit a transaction.";
 
-  static examples = [ `$ <%= config.bin %> <%= command.id %>
-$ <%= config.bin %> <%= command.id %> -n "Edeka" -p life -a -22.67
-$ <%= config.bin %> <%= command.id %> -n "Edeka" -p life -a -22.67 -t groceries -d yesterday --color #ff0000 --color-bg dddddd --dryrun
+  static examples = [ `$ <%= config.bin %> <%= command.id %> -N "Edeka"
+$ <%= config.bin %> <%= command.id %> -N "Edeka" -P life -A -22.67 -D yesterday --color #ff0000 --color-bg dddddd --dryrun
 ` ];
 
   static flags = {
