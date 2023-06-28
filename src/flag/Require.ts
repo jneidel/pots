@@ -2,7 +2,8 @@ import * as askFor from "../util/questions";
 import { ValueOnly, PromptOptions, InteractiveDefaultOptions } from "./options";
 import { DateString } from "../util/date";
 import database from "../config/database";
-import { Pot } from "../config/models/types";
+import { Pot, Transaction } from "../config/models/types";
+import { findPot } from "./util";
 
 export default class Require {
   static async text( options: PromptOptions ): Promise<string> {
@@ -38,12 +39,7 @@ export default class Require {
     const { value } = options;
 
     if ( value ) {
-      try {
-        return database.Pot.findById( value, { keepOpen: true } );
-      } catch ( err ) {
-        console.log( "404:", err );
-        throw new Error( `Pot named '${value}' does not exist.` );
-      }
+      return findPot( value );
     } else {
       const pots = database.Pot.findAll();
 
@@ -56,5 +52,29 @@ export default class Require {
 
       return selected;
     }
+  }
+
+  static async transaction( options: ValueOnly, verb: string|null = null ): Promise<Transaction> {
+    const { value } = options;
+
+    // if ( value ) {
+    //   try {
+    //     return database.Transaction.findById( value, { keepOpen: true } );
+    //   } catch ( err ) {
+    //     console.log( "404:", err );
+    //     throw new Error( `Pot named '${value}' does not exist.` );
+    //   }
+    // } else {
+    const transactions = database.Transaction.findAll();
+
+    const selected = await askFor.selectFromList<Transaction>( {
+      message: verb ? `Select a transaction to ${verb}:` : "Select a transaction:",
+      choices: [ ...transactions ]
+        .map( ( trans ) => ( { name: `"${trans.name}" for ${trans.amount} in "${trans.pot.name}"`, value: trans } ) ),
+      noun: "transaction",
+    } );
+
+    return selected;
+    // }
   }
 }

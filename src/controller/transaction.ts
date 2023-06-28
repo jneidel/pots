@@ -1,5 +1,6 @@
 import { Require, Optional, Validate } from "../flag";
 import database from "../config/database";
+import { Transaction } from "../config/models/types";
 
 export async function add( flags ) {
   const isInteractive = !( !flags.date && flags.name && flags.pot && flags.amount );
@@ -44,4 +45,42 @@ export function list(): string {
   return outString;
 }
 
+export async function edit( flags ): Promise<string[]> {
+  const name = Optional.text( {
+    value: flags.name,
+  } );
+  const amount = Optional.number( {
+    value: flags.amount,
+  } );
+  const pot = Optional.pot( {
+    value: flags.pot,
+  } );
+  const dateString = Optional.date( {
+    value: flags.date,
+  } );
+  const date = dateString !== null ? dateString.date : null;
+
+  const changedValues: Partial<Transaction> = {};
+  [ // set non-null values on change object
+    { name },
+    { amount },
+    { pot },
+    { date },
+  ].forEach( obj => {
+    const propertyName = Object.keys( obj )[0];
+    const value = obj[propertyName];
+
+    if ( value !== null )
+      changedValues[propertyName] = value;
+  } );
+
+  if ( Object.keys( changedValues ).length === 0 )
+    throw new Error( "No flags for values to be changed given\nSee --help for available flags" );
+
+  const transaction = await Require.transaction( {
+    value: flags.name,
+  } );
+  database.Transaction.edit( transaction, changedValues );
+
+  return Object.keys( changedValues );
 }
