@@ -28,28 +28,28 @@ $ <%= config.bin %> <%= command.id %> -n "Edeka" -p life -a -22.67 -t groceries 
       description: "Transaction size, specify negative with minus (-)",
       aliases    : [ "size" ],
     } ),
-    tag: Flags.string( {
-      char       : "t",
-      helpGroup  : "Optional",
-      description: "Tag/category that the transaction falls under",
-      aliases    : [ "category" ],
-    } ),
-    color: Flags.string( {
-      char       : "c",
-      helpGroup  : "Optional",
-      description: "Text color of the transaction",
-    } ),
-    "color-bg": Flags.string( {
-      description: "Background color of the transaction",
-      char       : "b",
-      helpGroup  : "Optional",
-      aliases    : [ "bg" ],
-    } ),
-    dryrun: Flags.boolean( {
-      helpGroup  : "Testing",
-      description: "Only print the transaction instead of persisting it",
-      default    : false,
-    } ),
+    // tag: Flags.string( {
+    //   char       : "t",
+    //   helpGroup  : "Optional",
+    //   description: "Tag/category that the transaction falls under",
+    //   aliases    : [ "category" ],
+    // } ),
+    // color: Flags.string( {
+    //   char       : "c",
+    //   helpGroup  : "Optional",
+    //   description: "Text color of the transaction",
+    // } ),
+    // "color-bg": Flags.string( {
+    //   description: "Background color of the transaction",
+    //   char       : "b",
+    //   helpGroup  : "Optional",
+    //   aliases    : [ "bg" ],
+    // } ),
+    // dryrun: Flags.boolean( {
+    //   helpGroup  : "Testing",
+    //   description: "Only print the transaction instead of persisting it",
+    //   default    : false,
+    // } ),
   };
 
   async run(): Promise<void> {

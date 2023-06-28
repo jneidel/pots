@@ -18,7 +18,7 @@ export default class Require {
     const { value, prompt } = options;
 
     if ( value )
-      return value;
+      return Number.parseFloat( value );
     else
       return askFor.number( prompt );
   }

@@ -27,15 +27,21 @@ export async function add( flags ) {
 }
 
 
-export function list() {
+export function list(): string {
   const transactions = database.Transaction.findAll();
+
+  let outString = "";
 
   transactions.forEach( ( t ) => {
     if ( t.pot )
-      console.log( t.name, t.pot.name, t.amount, t.date );
+      outString += `"${t.name}" for ${t.amount} in "${t.pot.name}" on ${t.date}\n`;
     else
-      console.log( t.name, t.amount, t.date );
+      outString += `"${t.name}" for ${t.amount} in "unknown pot" on ${t.date}\n`;
   } );
 
   database.close();
+
+  return outString;
+}
+
 }

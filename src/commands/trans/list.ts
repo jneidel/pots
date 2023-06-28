@@ -15,6 +15,6 @@ $ <%= config.bin %> <%= command.id %> -n "Edeka" -p life -a -22.67 -t groceries 
   async run(): Promise<void> {
     // const { flags } = await this.parse( Add );
 
-    list();
+    this.log( list() );
   }
 }
