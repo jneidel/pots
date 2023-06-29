@@ -43,7 +43,6 @@
     "@oclif/core": "^2.1.7",
     "@oclif/plugin-help": "^5",
     "@oclif/plugin-not-found": "^2.3.15",
-    "@oclif/plugin-plugins": "^2.2.2",
     "@oclif/plugin-warn-if-update-available": "^2.0.19",
     "chalk": "^4.1.2",
     "cli-table3": "^0.6.3",

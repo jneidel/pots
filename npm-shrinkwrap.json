@@ -12,7 +12,6 @@
         "@oclif/core": "^2.1.7",
         "@oclif/plugin-help": "^5",
         "@oclif/plugin-not-found": "^2.3.15",
-        "@oclif/plugin-plugins": "^2.2.2",
         "@oclif/plugin-warn-if-update-available": "^2.0.19",
         "chalk": "^4.1.2",
         "cli-table3": "^0.6.3",
@@ -1249,27 +1248,6 @@
         "@oclif/color": "^1.0.6",
         "@oclif/core": "^2.8.7",
         "fast-levenshtein": "^3.0.0"
-      },
-      "engines": {
-        "node": ">=12.0.0"
-      }
-    },
-    "node_modules/@oclif/plugin-plugins": {
-      "version": "2.4.7",
-      "resolved": "https://registry.npmjs.org/@oclif/plugin-plugins/-/plugin-plugins-2.4.7.tgz",
-      "integrity": "sha512-6fzUDLWrSK7n6+EBrEekEEYrYTCneRoOF9TzojkjuFn1+ailvUlr98G90bblxKOyy8fqMe7QjvqwTgIDQ9ZIzg==",
-      "dependencies": {
-        "@oclif/color": "^1.0.4",
-        "@oclif/core": "^2.8.2",
-        "chalk": "^4.1.2",
-        "debug": "^4.3.4",
-        "fs-extra": "^9.0",
-        "http-call": "^5.2.2",
-        "load-json-file": "^5.3.0",
-        "npm-run-path": "^4.0.1",
-        "semver": "^7.5.0",
-        "tslib": "^2.4.1",
-        "yarn": "^1.22.18"
       },
       "engines": {
         "node": ">=12.0.0"
@@ -5208,37 +5186,6 @@
       "integrity": "sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==",
       "dev": true
     },
-    "node_modules/load-json-file": {
-      "version": "5.3.0",
-      "resolved": "https://registry.npmjs.org/load-json-file/-/load-json-file-5.3.0.tgz",
-      "integrity": "sha512-cJGP40Jc/VXUsp8/OrnyKyTZ1y6v/dphm3bioS+RrKXjK2BB6wHUd6JptZEFDGgGahMT+InnZO5i1Ei9mpC8Bw==",
-      "dependencies": {
-        "graceful-fs": "^4.1.15",
-        "parse-json": "^4.0.0",
-        "pify": "^4.0.1",
-        "strip-bom": "^3.0.0",
-        "type-fest": "^0.3.0"
-      },
-      "engines": {
-        "node": ">=6"
-      }
-    },
-    "node_modules/load-json-file/node_modules/strip-bom": {
-      "version": "3.0.0",
-      "resolved": "https://registry.npmjs.org/strip-bom/-/strip-bom-3.0.0.tgz",
-      "integrity": "sha512-vavAMRXOgBVNF6nyEEmL3DBK19iRpDcoIwW+swQ+CbGiu7lju6t+JklA1MHweoWtadgt4ISVUsXLyDq34ddcwA==",
-      "engines": {
-        "node": ">=4"
-      }
-    },
-    "node_modules/load-json-file/node_modules/type-fest": {
-      "version": "0.3.1",
-      "resolved": "https://registry.npmjs.org/type-fest/-/type-fest-0.3.1.tgz",
-      "integrity": "sha512-cUGJnCdr4STbePCgqNFbpVNCepa+kAVohJs1sLhxzdH+gnEoOd8VhbYa7pD3zZYGiURWM2xzEII3fQcRizDkYQ==",
-      "engines": {
-        "node": ">=6"
-      }
-    },
     "node_modules/locate-path": {
       "version": "6.0.0",
       "resolved": "https://registry.npmjs.org/locate-path/-/locate-path-6.0.0.tgz",
@@ -5648,6 +5595,7 @@
       "version": "4.0.1",
       "resolved": "https://registry.npmjs.org/npm-run-path/-/npm-run-path-4.0.1.tgz",
       "integrity": "sha512-S48WzZW777zhNIrn7gxOlISNAqi9ZC/uQFnRdbeIHhZhCA6UqpkOT8T1G7BvfdgP4Er8gF4sUbaS0i7QvIfCWw==",
+      "dev": true,
       "dependencies": {
         "path-key": "^3.0.0"
       },
@@ -5929,6 +5877,7 @@
       "version": "3.1.1",
       "resolved": "https://registry.npmjs.org/path-key/-/path-key-3.1.1.tgz",
       "integrity": "sha512-ojmeN0qd+y0jszEtoY48r0Peq5dwMEkIlCOu6Q5f41lfkswXuKtYrhgoTpLnyIcHm24Uhqx+5Tqm2InSwLhE6Q==",
+      "dev": true,
       "engines": {
         "node": ">=8"
       }
@@ -5967,14 +5916,6 @@
       },
       "funding": {
         "url": "https://github.com/sponsors/jonschlinkert"
-      }
-    },
-    "node_modules/pify": {
-      "version": "4.0.1",
-      "resolved": "https://registry.npmjs.org/pify/-/pify-4.0.1.tgz",
-      "integrity": "sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==",
-      "engines": {
-        "node": ">=6"
       }
     },
     "node_modules/pirates": {
@@ -7916,19 +7857,6 @@
       "dev": true,
       "engines": {
         "node": ">=10"
-      }
-    },
-    "node_modules/yarn": {
-      "version": "1.22.19",
-      "resolved": "https://registry.npmjs.org/yarn/-/yarn-1.22.19.tgz",
-      "integrity": "sha512-/0V5q0WbslqnwP91tirOvldvYISzaqhClxzyUKXYxs07yUILIs5jx/k6CFe8bvKSkds5w+eiOqta39Wk3WxdcQ==",
-      "hasInstallScript": true,
-      "bin": {
-        "yarn": "bin/yarn.js",
-        "yarnpkg": "bin/yarn.js"
-      },
-      "engines": {
-        "node": ">=4.0.0"
       }
     },
     "node_modules/yn": {
