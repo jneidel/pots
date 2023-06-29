@@ -23,19 +23,19 @@ if [ "$1" != "major" ] && [ "$1" != "minor" ] && [ "$1" != "patch" ]; then
 fi
 
 VERSION="$(npm --no-git-tag-version version $1)"
+LATEST=$(git tag | tail -n1)
 echo "Releasing '$VERSION'"
 
 npm shrinkwrap
 git add npm-shrinkwrap.json package.json
 git commit -m $VERSION
 git tag $VERSION
+git push origin
 git push origin --tags
 
 # create changelog
 REPO=jneidel/pots
 URL="https://github.com/$REPO/releases/new?tag=$VERSION&title=$VERSION&body=%23%23%20Improvements%0A%0A%0A%0A%23%23%20Fixes%0A%0A%0A%0A"
-
-LATEST=$(git tag | tail -n1)
 git log $LATEST..HEAD --oneline --no-decorate | {
   while read line; do
     COMMIT_LINE=`echo $line | awk '{ REPO = ENVIRON["REPO"]; print "- ["substr($0, index($0," ")+1)"](https://github.com/"REPO"/commit/"$1")" }'`
