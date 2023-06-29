@@ -29,9 +29,19 @@ class Database {
   }
 
   private open() {
-    this._database = new Realm( {
-      schema: Object.values( models ),
-    } );
+    if ( !process.argv[1].match( "/bin/run$" ) ) {
+      const xdgDataHome = process.env.XDG_DATA_HOME || `${process.env.HOME  }/.local/share`;
+      const dataDir = `${xdgDataHome}/pots-data`;
+
+      this._database = new Realm( {
+        schema: Object.values( models ),
+        path  : dataDir,
+      } );
+    } else {
+      this._database = new Realm( {
+        schema: Object.values( models ),
+      } );
+    }
   }
   public close() {
     this.database.close();
