@@ -5,12 +5,20 @@ import * as types from "./models/types";
 type DbOptions = {
   keepOpen: boolean;
 }
+type SortBy = {
+  name: string;
+  direction: "asc"|"desc";
+}
+interface DbOptionsWithSorting extends DbOptions {
+  sortBy?: SortBy;
+}
+
 const defaultDbOptions: DbOptions = {
   keepOpen: false,
 };
-const defaultFindAllOptions: DbOptions = Object.assign( {}, defaultDbOptions, {
+const defaultFindAllOptions: DbOptions = {
   keepOpen: true,
-} );
+};
 
 class Database {
   private _database: any = undefined;
@@ -47,8 +55,22 @@ class Database {
     return object;
   }
 
-  private findAll( model: string, options: DbOptions ) {
-    const objectArr: any[] = [ ...this.database.objects( model ) ];
+  private convertSortingDirection( string: "asc"|"desc" ): boolean {
+    if ( string === "asc" )
+      return false;
+    else
+      return true;
+  }
+  private findAll( model: string, options: DbOptionsWithSorting ) {
+    let dbObject =  this.database.objects( model );
+
+    if ( options.sortBy )
+      dbObject = dbObject.sorted(
+        options.sortBy.name,
+        this.convertSortingDirection( options.sortBy.direction )
+      );
+
+    const objectArr: any[] = [ ...dbObject ];
 
     if ( !options.keepOpen )
       this.database.close();
@@ -84,7 +106,20 @@ class Database {
       findById: ( id: any, options: DbOptions = defaultDbOptions ): T => {
         return this.findById( model, id, options );
       },
-      findAll: ( options: DbOptions = defaultFindAllOptions  ): T[] => {
+      findAll: ( passedOptions: DbOptionsWithSorting = defaultFindAllOptions ): T[] => {
+        let options: DbOptionsWithSorting;
+        if ( model === "Transaction" ) {
+          const sortByDateOptions = {
+            sortBy: {
+              name     : "date",
+              direction: "asc",
+            },
+          };
+          options = Object.assign( {}, defaultFindAllOptions, sortByDateOptions, passedOptions );
+        } else {
+          options = Object.assign( {}, defaultFindAllOptions,  passedOptions );
+        }
+
         return this.findAll( model, options );
       },
       remove: ( object: any, options: DbOptions = defaultDbOptions ): void => {
