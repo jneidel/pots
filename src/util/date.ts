@@ -5,7 +5,7 @@ export function validateDateString( dateString: string, dontThrow = false ): str
   const message = `Invalid date passed.
 
 Natural language dates like these supported:
-  today, yesterday, tomorrow, Thursday, fri, next wednesday, last week tue, mon 3 weeks ago, aug 15
+  today, yesterday, tomorrow, Thursday, fri, next wednesday, last tue, aug 15
 
 Alternatively an exact dates like 5/24/2022 can also be used.
 
@@ -30,9 +30,5 @@ export class DateString {
 
     this.string = string;
     this.date = Date.create( string );
-  }
-
-  format( formatString: string ): string[] {
-    return Date.format( this.date, formatString ).split( " " );
   }
 }
