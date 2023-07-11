@@ -31,7 +31,9 @@ function handleOneOrZeroChoices<T>( data: { choices: Choices<T>; noun?: string }
 export async function dayOfTheWeek( choices: Choices<string> ): Promise<string> {
   const choice: string|null = handleOneOrZeroChoices( { choices } );
 
-  if ( choice !== null ) return new Promise( ( resolve ) => resolve( choice ) ); else
+  if ( choice !== null )
+    return new Promise( ( resolve ) => resolve( choice ) );
+  else
     return inquirer.prompt( [ {
       type   : "list",
       name   : "dotw",

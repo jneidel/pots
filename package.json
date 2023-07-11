@@ -22,7 +22,8 @@
     "watch-build": "tsc -w",
     "watch-test": "jest --watch",
     "watch-start": "find dist | entr -cr ./bin/run",
-    "lint": "eslint --fix --ext .ts --parser-options \"{ 'ecmaVersion': 10, 'ecmaFeatures': { 'impliedStrict': true }, project: ./tsconfig.json }\" src"
+    "lint": "eslint --fix --ext .ts --parser-options \"{ 'ecmaVersion': 10, 'ecmaFeatures': { 'impliedStrict': true }, project: ./tsconfig.json }\" src test",
+    "lint:nofix": "eslint --ext .ts --parser-options \"{ 'ecmaVersion': 10, 'ecmaFeatures': { 'impliedStrict': true }, project: ./tsconfig.json }\" src test"
   },
   "files": [
     "/bin",

@@ -218,7 +218,7 @@
       }
     ],
     "no-mixed-operators": 0,
-    "no-extra-parens": 2,
+    "no-extra-parens": 0,
     "no-plusplus": 0,
     "default-case": 0,
     "strict": 0,
