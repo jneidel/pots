@@ -15,7 +15,7 @@ export default class Require {
       return askFor.text( prompt );
   }
 
-  static async number( options: PromptOptions ): Promise<Number> {
+  static async number( options: PromptOptions ): Promise<number> {
     const { value, prompt } = options;
 
     if ( value )

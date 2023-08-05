@@ -1,8 +1,8 @@
 import { Pot } from ".";
 
-export type Transaction = {
+export interface Transaction {
   name: string;
   date: Date;
-  amount: Number;
+  amount: number;
   pot: Pot;
 }
