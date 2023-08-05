@@ -118,4 +118,3 @@ test.each( [
   const result = table.transactionsHaveMonthChangeBetweenThem( index );
   expect( result ).toBe( expected );
 } );
-

@@ -34,6 +34,8 @@ export default class TransactionTableView extends BaseTable {
 
     this.headerRow = this.generateHeaderRow();
     this.sumsRow = this.calculateSumsRow();
+
+    this.fillTable();
   }
 
   private generateHeaderRow() {
@@ -117,5 +119,10 @@ export default class TransactionTableView extends BaseTable {
 
       return previousTransaction.date.getMonth() !== currentTransaction.date.getMonth();
     }
+  }
+
+  public fillTable() {
+    const tableRows = this.generateTableMatrixWithData();
+    tableRows.forEach( row => this.table.push( row ) );
   }
 }

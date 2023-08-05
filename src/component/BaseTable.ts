@@ -1,10 +1,26 @@
+import Table, { Table as TableType, TableConstructorOptions } from "cli-table3";
 import { Chars, TableDimensions, TableEntry, TableRow } from "./types/table";
 
 export default class BaseTable {
   protected dimensions: TableDimensions;
+  protected table: TableType;
 
-  constructor( dimensions: TableDimensions ) {
+  constructor( dimensions: TableDimensions, tableOptions: TableConstructorOptions = {} ) {
     this.dimensions = dimensions;
+
+    const defaultTableOptions = {
+      colWidths: [ 35 ],
+      style    : { head: [] },
+      wordWrap : true,
+      chars    : {
+        "mid"      : " ",
+        "right-mid": "│",
+        "mid-mid"  : "│",
+        "left-mid" : "│",
+      },
+      colAligns: [ "left", ...new Array( dimensions.columns - 1 ).fill( "right" ) ],
+    };
+    this.table = new Table( Object.assign( defaultTableOptions, tableOptions ) );
   }
 
   protected mergeEntryWithChars( entry: TableEntry, chars: Chars ) {
@@ -40,9 +56,13 @@ export default class BaseTable {
     const charsArr = this.generateRowOf( this.underlineChars );
 
     return this.mergeRowWithChars( row, charsArr );
-  }
+  };
 
   protected isFirstDataRow( rowIndex: number ) {
     return rowIndex === this.dimensions.dataStartRow;
+  }
+
+  public print(): string {
+    return this.table.toString();
   }
 }
