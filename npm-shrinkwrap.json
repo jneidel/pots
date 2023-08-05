@@ -1265,17 +1265,17 @@
       }
     },
     "node_modules/@oclif/plugin-warn-if-update-available": {
-      "version": "2.0.39",
-      "resolved": "https://registry.npmjs.org/@oclif/plugin-warn-if-update-available/-/plugin-warn-if-update-available-2.0.39.tgz",
-      "integrity": "sha512-tfuXUn7pxMImw5rbZaHi2yhNDsE9p1Z+pUJd6Q+NkMYRe9woIun2DWXGgVp3bfHIok/3dZ3MplGSdgyHzFiPdA==",
+      "version": "2.0.46",
+      "resolved": "https://registry.npmjs.org/@oclif/plugin-warn-if-update-available/-/plugin-warn-if-update-available-2.0.46.tgz",
+      "integrity": "sha512-TyOvPHzl1e8lLeRF8A9nhte+H9LR0arWqu+MYhNxzislx7SbG4M5yRhoH5F1MmwGxgJBbWHZVsmLjZm4S9cEog==",
       "dependencies": {
-        "@oclif/core": "^2.8.7",
+        "@oclif/core": "^2.11.1",
         "chalk": "^4.1.0",
         "debug": "^4.1.0",
         "fs-extra": "^9.0.1",
         "http-call": "^5.2.2",
         "lodash": "^4.17.21",
-        "semver": "^7.5.2"
+        "semver": "^7.5.4"
       },
       "engines": {
         "node": ">=12.0.0"
