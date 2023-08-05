@@ -122,12 +122,12 @@ class Database {
           const sortByDateOptions = {
             sortBy: {
               name     : "date",
-              direction: "asc",
+              direction: "desc",
             },
           };
           options = Object.assign( {}, defaultFindAllOptions, sortByDateOptions, passedOptions );
         } else {
-          options = Object.assign( {}, defaultFindAllOptions,  passedOptions );
+          options = Object.assign( {}, defaultFindAllOptions, passedOptions );
         }
 
         return this.findAll( model, options );
