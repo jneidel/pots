@@ -57,13 +57,13 @@ test( "generateTableMatrixWithData fills the right pots", () => {
   const result: any = table.generateTableMatrixWithData() ;
   expect( result[0] ).toEqual( headerRow );
   expect( result[1] ).toEqual( sumsRow );
-  expect( result[2][0].content ).toBe( trans[0].name );
+  expect( result[2][0].content ).toBe( `${trans[0].name  } (Jul27)` );
   expect( result[2][1].content ).toBe( trans[0].amount.toFixed( 2 ) );
-  expect( result[3][0].content ).toBe( trans[1].name );
+  expect( result[3][0].content ).toBe( `${trans[1].name  } (Jul28)` );
   expect( result[3][3].content ).toBe( trans[1].amount.toFixed( 2 ) );
-  expect( result[4][0].content ).toBe( trans[2].name );
+  expect( result[4][0].content ).toBe( `${trans[2].name  } (Aug02)` );
   expect( result[4][2].content ).toBe( trans[2].amount.toFixed( 2 ) );
-  expect( result[5][0].content ).toBe( trans[3].name );
+  expect( result[5][0].content ).toBe( `${trans[3].name  } (Aug03)` );
   expect( result[5][3].content ).toBe( trans[3].amount.toFixed( 2 ) );
 } );
 

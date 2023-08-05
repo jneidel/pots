@@ -93,13 +93,18 @@ export default class TransactionTableView extends BaseTable {
     return matrix;
   }
 
+  protected formatDate( date: Date ) {
+    return new Intl.DateTimeFormat( "en-US", { month: "short" } ).format( date )
+      + String( date.getDate() ).padStart( 2, "0" );
+  }
+
   private fillRowWithTransactionData( rowIndex: number ) {
     const trans = this.getTransactionAtRow( rowIndex );
     let row = this.generateRowOf( "" );
 
     row[this.getColumnIndexForPot( trans.pot )] = { content: trans.amount.toFixed( 2 ) };
 
-    row[0] = { content: trans.name, chars: this.underlineChars };
+    row[0] = { content: `${trans.name} (${this.formatDate( trans.date )})`, chars: this.underlineChars };
     row[1] = this.mergeEntryWithChars( row[1], this.underlineCharsFinishFromNextColumn );
 
     if ( this.transactionsHaveMonthChangeBetweenThem( rowIndex ) )
