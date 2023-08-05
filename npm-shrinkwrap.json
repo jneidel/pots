@@ -1177,9 +1177,9 @@
       }
     },
     "node_modules/@oclif/color": {
-      "version": "1.0.6",
-      "resolved": "https://registry.npmjs.org/@oclif/color/-/color-1.0.6.tgz",
-      "integrity": "sha512-U6hABUkwoUoEZ1K5mJ2E7AeJ7udjYP3ZYWq18LLoMyjV+Us9hh3UwAghOY75F9PAzF8q5kvhoGu70LnPASbZ8g==",
+      "version": "1.0.10",
+      "resolved": "https://registry.npmjs.org/@oclif/color/-/color-1.0.10.tgz",
+      "integrity": "sha512-INWEDAL3SzzR3pIhkrqk22HV6JravLUeRZXAIpoQqIeLReauaibCVcNTzOlt0z0S8YrqRhksc54ZxZC4Oa8xBw==",
       "dependencies": {
         "ansi-styles": "^4.2.1",
         "chalk": "^4.1.0",
@@ -1243,12 +1243,12 @@
       }
     },
     "node_modules/@oclif/plugin-not-found": {
-      "version": "2.3.26",
-      "resolved": "https://registry.npmjs.org/@oclif/plugin-not-found/-/plugin-not-found-2.3.26.tgz",
-      "integrity": "sha512-a8WfN8km1A9Q0lXWo1LZgFEjVFYIbOOp/QG++zyHt2Hnsp2b5Zr0p8EQLBK7v6na6C0Mrr+GlMI8zE40hYWMbw==",
+      "version": "2.3.35",
+      "resolved": "https://registry.npmjs.org/@oclif/plugin-not-found/-/plugin-not-found-2.3.35.tgz",
+      "integrity": "sha512-PfQq2AUS7xbgLkDDc7rIszRnWoOfYISixnDRjRpUPeIq+Qr4GAFotQtTv0MWEEofg9dtTeUQ+D7JNl9mEPhxHA==",
       "dependencies": {
-        "@oclif/color": "^1.0.6",
-        "@oclif/core": "^2.8.7",
+        "@oclif/color": "^1.0.9",
+        "@oclif/core": "^2.11.7",
         "fast-levenshtein": "^3.0.0"
       },
       "engines": {
