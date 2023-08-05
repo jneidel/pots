@@ -26,7 +26,8 @@
     "@typescript-eslint"
   ],
   "extends": [
-    "eslint:recommended"
+    "eslint:recommended",
+    "plugin:diff/diff"
   ],
   "rules": {
     "no-undef": 2,

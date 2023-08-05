@@ -28,6 +28,7 @@
         "@types/node": "^16.11.9",
         "@typescript-eslint/eslint-plugin": "^5.47.1",
         "eslint": "^8.30.0",
+        "eslint-plugin-diff": "^2.0.1",
         "eslint-plugin-node": "^11.1.0",
         "eslint-plugin-unicorn": "^45.0.2",
         "jest": "^27.3.1",
@@ -3024,6 +3025,18 @@
       },
       "funding": {
         "url": "https://opencollective.com/eslint"
+      }
+    },
+    "node_modules/eslint-plugin-diff": {
+      "version": "2.0.1",
+      "resolved": "https://registry.npmjs.org/eslint-plugin-diff/-/eslint-plugin-diff-2.0.1.tgz",
+      "integrity": "sha512-qqbvwaaO1cfkUprliqiRojRsD0qGsvzmJNqNrb9s0h15sDVzZMXYdu0TUFpUwauLeU28etSsfWIp0Uu+OAcXXw==",
+      "dev": true,
+      "engines": {
+        "node": ">=14.0.0"
+      },
+      "peerDependencies": {
+        "eslint": ">=6.7.0"
       }
     },
     "node_modules/eslint-plugin-es": {
