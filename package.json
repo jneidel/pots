@@ -68,7 +68,7 @@
   "oclif": {
     "bin": "pots",
     "dirname": "pots",
-    "commands": "./dist/commands",
+    "commands": "./dist/src/commands",
     "plugins": [
       "@oclif/plugin-help",
       "@oclif/plugin-warn-if-update-available",
