@@ -25,7 +25,7 @@
       "devDependencies": {
         "@types/inquirer": "^8.2.5",
         "@types/jest": "^27.0.3",
-        "@types/node": "^16.11.9",
+        "@types/node": "^20.4.8",
         "@typescript-eslint/eslint-plugin": "^5.47.1",
         "eslint": "^8.30.0",
         "eslint-plugin-diff": "^2.0.1",
@@ -1452,9 +1452,9 @@
       "dev": true
     },
     "node_modules/@types/node": {
-      "version": "16.18.36",
-      "resolved": "https://registry.npmjs.org/@types/node/-/node-16.18.36.tgz",
-      "integrity": "sha512-8egDX8dE50XyXWH6C6PRCNkTP106DuUrvdrednFouDSmCi7IOvrqr0frznfZaHifHH/3aq/7a7v9N4wdXMqhBQ=="
+      "version": "20.4.8",
+      "resolved": "https://registry.npmjs.org/@types/node/-/node-20.4.8.tgz",
+      "integrity": "sha512-0mHckf6D2DiIAzh8fM8f3HQCvMKDpK94YQ0DSVkfWTG9BZleYIWudw9cJxX8oCk9bM+vAkDyujDV6dmKHbvQpg=="
     },
     "node_modules/@types/normalize-package-data": {
       "version": "2.4.1",
