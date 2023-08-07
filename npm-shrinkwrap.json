@@ -1252,9 +1252,9 @@
       }
     },
     "node_modules/@oclif/plugin-not-found": {
-      "version": "2.3.35",
-      "resolved": "https://registry.npmjs.org/@oclif/plugin-not-found/-/plugin-not-found-2.3.35.tgz",
-      "integrity": "sha512-PfQq2AUS7xbgLkDDc7rIszRnWoOfYISixnDRjRpUPeIq+Qr4GAFotQtTv0MWEEofg9dtTeUQ+D7JNl9mEPhxHA==",
+      "version": "2.3.36",
+      "resolved": "https://registry.npmjs.org/@oclif/plugin-not-found/-/plugin-not-found-2.3.36.tgz",
+      "integrity": "sha512-YMXvSpXOo13S3gNA8+0uJR6DoRQ+Bbxs06VnFpJST39RnZy51XyIAn3PYaIo6iyGoDCg+MqL+txLmhWlRLEn+w==",
       "dependencies": {
         "@oclif/color": "^1.0.9",
         "@oclif/core": "^2.11.7",
