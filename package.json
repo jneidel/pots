@@ -45,7 +45,7 @@
     "@oclif/plugin-help": "^5",
     "@oclif/plugin-not-found": "^2.3.15",
     "@oclif/plugin-warn-if-update-available": "^2.0.19",
-    "chalk": "^4.1.2",
+    "chalk": "^5.3.0",
     "cli-table3": "^0.6.3",
     "inquirer": "^8.2.5",
     "realm": "^11.10.1",
